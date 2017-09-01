@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run build -- --watch\" \"nodemon dist\"",
+    "start": "concurrently \"npm run build -- --watch\" \"nodemon --watch ./dist --watch ../shared/dist dist/index\"",
     "build": "babel src/ --out-dir dist/ --ignore spec.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
