@@ -1,8 +1,10 @@
+import 'module-alias/register'
+
 import express from 'express'
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 
-import Component from '../../shared/dist/component'
+import Component from '@shared/component'
 
 const app = express()
 const port = process.env.PORT || 3001

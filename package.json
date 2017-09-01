@@ -7,6 +7,9 @@
     "start": "concurrently \"cd server && npm start\" \"cd shared && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "8.4.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jaketrent/stickerloot.git"
@@ -17,5 +20,17 @@
   "bugs": {
     "url": "https://github.com/jaketrent/stickerloot/issues"
   },
-  "homepage": "https://github.com/jaketrent/stickerloot#readme"
+  "homepage": "https://github.com/jaketrent/stickerloot#readme",
+  "dependencies": {
+    "module-alias": "^2.0.1"
+  },
+  "_moduleAliases": {
+    "@shared": "shared/dist"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "concurrently": "^3.5.0"
+  }
 }
