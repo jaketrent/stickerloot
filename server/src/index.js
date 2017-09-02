@@ -18,6 +18,7 @@ const render = App => {
   return `
   <html>
     <head>
+      <title>Wow</title>
       <style>${css}</style>
     </head>
     <body>
