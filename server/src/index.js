@@ -22,6 +22,7 @@ const render = App => {
     </head>
     <body>
       <div id="app">${html}</div>
+      <script>window._glam = ${JSON.stringify(ids)}</script>
       <script src="/static/index.js"></script>
     </body>
   </html>
@@ -29,13 +30,7 @@ const render = App => {
 }
 
 app.get('/', (req, res) => {
-  res.send(
-    render(
-      <div>
-        <Component>ONE</Component>
-      </div>
-    )
-  )
+  res.send(render(<Component />))
 })
 
 app.use('/static', express.static(staticDir))

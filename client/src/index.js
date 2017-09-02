@@ -1,5 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { rehydrate } from 'glamor'
 
-ReactDOM.render(<div>Jake client cinco</div>, document.getElementById('app'))
-console.log('client!')
+import Component from '../../shared/dist/component'
+
+console.log('client!', window._glam)
+rehydrate(window._glam)
+ReactDOM.render(<Component />, document.getElementById('app'))
