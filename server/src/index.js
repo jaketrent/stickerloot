@@ -5,7 +5,6 @@ import path from 'path'
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { renderStatic } from 'glamor/server'
-import { rehydrate } from 'glamor'
 
 import Component from '@shared/component'
 
@@ -24,10 +23,6 @@ const render = App => {
     <body>
       <div id="app">${html}</div>
       <script src="/static/index.js"></script>
-      <script>
-        rehydrate(${JSON.stringify(ids)});
-        render(<App />, document.getElementById('app'));
-      </script>
     </body>
   </html>
 `
