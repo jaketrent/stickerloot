@@ -8,14 +8,14 @@
     "glamorous": "^4.6.0"
   },
   "scripts": {
-    "start": "npm run build:watch",
+    "start": "npm run build -- --watch",
     "buildold": "babel src/ --out-dir dist/ --ignore spec.js",
-    "build": "browserify src/index.js -o dist/index.js -t [ babelify --presets [ es2015 react ] ]",
-    "build:watch": "watchify src/index.js -o dist/index.js -t [ babelify --presets [ es2015 react ] ]"
+    "build": "node build"
   },
   "devDependencies": {
     "babelify": "^7.3.0",
     "browserify": "^14.4.0",
+    "pathmodify": "^0.5.0",
     "watchify": "^3.9.0"
   }
 }
