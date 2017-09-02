@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "concurrently \"rm -rf node_modules\" \"cd shared && rm -rf node_modules\" \"cd server && rm -rf node_modules\"",
+    "bootstrap": "concurrently \"cd shared && npm install\" \"cd server && npm install\"",
     "start": "concurrently \"cd server && npm start\" \"cd shared && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +24,7 @@
   },
   "homepage": "https://github.com/jaketrent/stickerloot#readme",
   "dependencies": {
+    "glamor": "^2.20.40",
     "module-alias": "^2.0.1"
   },
   "_moduleAliases": {

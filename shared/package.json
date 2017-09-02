@@ -12,6 +12,7 @@
   "author": "jaketrent",
   "license": "MIT",
   "dependencies": {
+    "glamorous": "^4.6.0",
     "react": "^15.6.1"
   }
 }

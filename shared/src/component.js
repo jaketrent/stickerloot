@@ -1,3 +1,5 @@
+import glamorous from 'glamorous'
 import React from 'react'
 
-export default _ => <div>Shared thing with alias</div>
+const Component = glamorous.div({ color: 'red' })
+export default Component
