@@ -18,7 +18,7 @@ const render = App => {
   return `
   <html>
     <head>
-      <title>Wow</title>
+      <title>Sticker Loot | NewInReact.com</title>
       <style>${css}</style>
     </head>
     <body>
