@@ -1,16 +1,21 @@
 {
-  "name": "stickerloot",
+  "name": "stickerloot-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.12"
+    "glamorous": "^4.6.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "npm run build:watch",
+    "buildold": "babel src/ --out-dir dist/ --ignore spec.js",
+    "build": "browserify src/index.js -o dist/index.js -t [ babelify --presets [ es2015 react ] ]",
+    "build:watch": "watchify src/index.js -o dist/index.js -t [ babelify --presets [ es2015 react ] ]"
+  },
+  "devDependencies": {
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "watchify": "^3.9.0"
   }
 }

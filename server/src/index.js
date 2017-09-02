@@ -1,6 +1,7 @@
 import 'module-alias/register'
 
 import express from 'express'
+import path from 'path'
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { renderStatic } from 'glamor/server'
@@ -10,6 +11,7 @@ import Component from '@shared/component'
 
 const app = express()
 const port = process.env.PORT || 3001
+const staticDir = path.join(__dirname, '..', '..', 'client', 'dist')
 
 const render = App => {
   const { html, css, ids } = renderStatic(() => ReactDOM.renderToString(App))
@@ -21,7 +23,7 @@ const render = App => {
     </head>
     <body>
       <div id="app">${html}</div>
-      <script src="./bundle.js"></script>
+      <script src="/static/index.js"></script>
       <script>
         rehydrate(${JSON.stringify(ids)});
         render(<App />, document.getElementById('app'));
@@ -40,5 +42,7 @@ app.get('/', (req, res) => {
     )
   )
 })
+
+app.use('/static', express.static(staticDir))
 
 app.listen(port, _ => console.log(`Listening on ${port}...`))
