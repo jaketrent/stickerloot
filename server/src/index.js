@@ -6,7 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { renderStatic } from 'glamor/server'
 
-import Component from '@shared/component'
+import Index from '@shared/index'
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -31,7 +31,7 @@ const render = App => {
 }
 
 app.get('/', (req, res) => {
-  res.send(render(<Component />))
+  res.send(render(<Index />))
 })
 
 app.use('/static', express.static(staticDir))
