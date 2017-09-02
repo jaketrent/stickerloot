@@ -16,6 +16,7 @@
     "babelify": "^7.3.0",
     "browserify": "^14.4.0",
     "pathmodify": "^0.5.0",
+    "recursive-copy": "^2.0.6",
     "watchify": "^3.9.0"
   }
 }
