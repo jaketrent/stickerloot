@@ -19,6 +19,7 @@ const render = App => {
   <html>
     <head>
       <title>Sticker Loot | NewInReact.com</title>
+      <link rel="stylesheet" href="/static/css/styles.css" />
       <style>${css}</style>
     </head>
     <body>
