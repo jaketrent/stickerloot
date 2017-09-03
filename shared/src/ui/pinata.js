@@ -71,7 +71,6 @@ export default class extends React.Component {
       animationName: swings.first()
     }
     this.handleClick = this.handleClick.bind(this)
-    this.handleThreadAnimationEnd = this.handleThreadAnimationEnd.bind(this)
   }
   handleClick(evt) {
     evt.preventDefault()
@@ -81,6 +80,7 @@ export default class extends React.Component {
       isSwinging: true,
       isHit: random.int(0, 4) >= 1 // 75% chance
     })
+    this.props.onSwing()
     this.timer = setTimeout(_ => this.setState({ isSwinging: false }), 2600)
   }
   render() {
