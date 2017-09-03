@@ -2,6 +2,8 @@ import * as glamor from 'glamor'
 import glamorous, { Div } from 'glamorous'
 import React from 'react'
 
+import * as swings from '../util/swings'
+
 const bgColor = '#caaa65'
 
 const Pinata = glamorous.img({
@@ -12,29 +14,6 @@ const Pinata = glamorous.img({
   height: '50vw'
 })
 
-const swing = glamor.css.keyframes({
-  '0%': {
-    transform: 'rotate(0deg)'
-  },
-  '15%': {
-    transform: 'rotate(45deg)'
-  },
-  '40%': {
-    transform: 'rotate(-45deg)'
-  },
-  '65%': {
-    transform: 'rotate(25deg)'
-  },
-  '85%': {
-    transform: 'rotate(-10deg)'
-  },
-  '95%': {
-    transform: 'rotate(2deg)'
-  },
-  '100%': {
-    transform: 'rotate(0deg)'
-  }
-})
 const Thread = glamorous.div(
   {
     position: 'relative',
@@ -47,9 +26,11 @@ const Thread = glamorous.div(
       red 10px,
       green 20px)`,
     borderRadius: '5px',
-    transformOrigin: '50% 0',
-    animation: `${swing} 2.5s ease-in-out infinite forwards paused`
+    transformOrigin: '50% 0'
   },
+  ({ animationName }) => ({
+    animation: `${animationName} 2.5s ease-in-out infinite forwards paused`
+  }),
   ({ isSwinging }) =>
     isSwinging
       ? {
@@ -62,20 +43,27 @@ export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isSwinging: false
+      isSwinging: false,
+      animationName: swings.asRandomKeyFrame()
     }
     this.handleClick = this.handleClick.bind(this)
   }
   handleClick(evt) {
     evt.preventDefault()
     if (this.timer) clearTimeout(this.timer)
-    this.setState({ isSwinging: true })
+    this.setState({
+      animationName: swings.asRandomKeyFrame(),
+      isSwinging: true
+    })
     this.timer = setTimeout(_ => this.setState({ isSwinging: false }), 2500)
   }
   render() {
     return (
       <Div position="relative">
-        <Thread isSwinging={this.state.isSwinging}>
+        <Thread
+          isSwinging={this.state.isSwinging}
+          animationName={this.state.animationName}
+        >
           <Pinata src="/static/img/pinata.png" onClick={this.handleClick} />
         </Thread>
       </Div>
