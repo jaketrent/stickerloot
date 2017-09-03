@@ -3,6 +3,7 @@ import glamorous, { Div } from 'glamorous'
 import React from 'react'
 
 import * as swings from '../util/swings'
+import * as random from '../util/random'
 
 const bgColor = '#caaa65'
 
@@ -13,6 +14,32 @@ const Pinata = glamorous.img({
   display: 'inline-block',
   height: '50vw'
 })
+
+const Interjection = glamorous.img(
+  {
+    position: 'relative',
+    top: '100px',
+    left: '50%',
+    maxWidth: '80vw',
+    transform: 'translateX(-50%)'
+  },
+  _ => {
+    const appear = glamor.css.keyframes({
+      '0%': {
+        transform: 'translateX(-50%) scale(0) rotate(0deg)'
+      },
+      '60%': {
+        transform: `translateX(-50%) scale(1) rotate(${random.int(-15, 15)}deg)`
+      },
+      '100%': {
+        transform: 'translateX(-50%) scale(0) rotate(0deg)'
+      }
+    })
+    return {
+      animation: `${appear} 700ms forwards`
+    }
+  }
+)
 
 const Thread = glamorous.div(
   {
@@ -31,8 +58,8 @@ const Thread = glamorous.div(
   ({ animationName }) => ({
     animation: `${animationName} 2.5s ease-in-out infinite forwards paused`
   }),
-  ({ isSwinging }) =>
-    isSwinging
+  ({ isSwinging, isHit }) =>
+    isSwinging && isHit
       ? {
           animationPlayState: 'running'
         }
@@ -44,7 +71,7 @@ export default class extends React.Component {
     super(props)
     this.state = {
       isSwinging: false,
-      animationName: swings.asRandomKeyFrame()
+      animationName: swings.first()
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -53,7 +80,8 @@ export default class extends React.Component {
     if (this.timer) clearTimeout(this.timer)
     this.setState({
       animationName: swings.asRandomKeyFrame(),
-      isSwinging: true
+      isSwinging: true,
+      isHit: random.int(0, 4) >= 1 // 75% chance
     })
     this.timer = setTimeout(_ => this.setState({ isSwinging: false }), 2500)
   }
@@ -62,10 +90,17 @@ export default class extends React.Component {
       <Div position="relative">
         <Thread
           isSwinging={this.state.isSwinging}
+          isHit={this.state.isHit}
           animationName={this.state.animationName}
         >
           <Pinata src="/static/img/pinata.png" onClick={this.handleClick} />
         </Thread>
+        {this.state.isSwinging &&
+          this.state.isHit &&
+          <Interjection src="/static/img/whack.png" />}
+        {this.state.isSwinging &&
+          !this.state.isHit &&
+          <Interjection src="/static/img/miss.png" />}
       </Div>
     )
   }

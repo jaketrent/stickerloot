@@ -1,5 +1,7 @@
 import * as glamor from 'glamor'
 
+import * as random from './random'
+
 // prettier-ignore
 const swings = [
   [
@@ -24,9 +26,7 @@ const swings = [
   ]
 ]
 
-const rand = (min = 0, max = 1) => Math.floor(Math.random() * (max - min)) + min
-
-const asKeyframe = timings =>
+const asKeyFrame = timings =>
   glamor.css.keyframes(
     timings.reduce((acc, t) => {
       acc[t[0] + '%'] = { transform: `rotate(${t[1]}deg)` }
@@ -34,4 +34,7 @@ const asKeyframe = timings =>
     }, {})
   )
 
-export const asRandomKeyFrame = _ => asKeyframe(swings[rand(0, swings.length)])
+export const asRandomKeyFrame = _ =>
+  asKeyFrame(swings[random.int(0, swings.length)])
+
+export const first = _ => asKeyFrame(swings[0])
