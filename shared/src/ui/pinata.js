@@ -17,12 +17,13 @@ const Pinata = glamorous.img({
 })
 
 const interjectionStyles = {
-  position: 'relative',
+  position: 'absolute',
   top: '100px',
   left: '50%',
   maxWidth: '80vw',
   transform: 'translateX(-50%)'
 }
+
 const Whack = glamorous.img(interjectionStyles, _ => {
   const appear = glamor.css.keyframes({
     '0%': {
@@ -37,6 +38,22 @@ const Whack = glamorous.img(interjectionStyles, _ => {
   })
   return {
     animation: `${appear} 700ms forwards`
+  }
+})
+
+const explosion = glamor.css.keyframes({
+  '0%': {
+    transform: 'translateX(-50%) scale(0)',
+    opacity: 1
+  },
+  '100%': {
+    transform: `translateX(-50%) scale(5)`,
+    opacity: 0
+  }
+})
+const Explode = glamorous.img(interjectionStyles, _ => {
+  return {
+    animation: `${explosion} 700ms forwards`
   }
 })
 
@@ -81,6 +98,7 @@ export default class extends React.Component {
     super(props)
     this.state = {
       isSwinging: false,
+      hitsRemaining: 3,
       animationName: swings.first()
     }
     this.handleClick = this.handleClick.bind(this)
@@ -91,10 +109,14 @@ export default class extends React.Component {
   handleClick(evt) {
     evt.preventDefault()
     if (this.timer) clearTimeout(this.timer)
+    const isHit = random.int(0, 4) >= 1 // 75% chance
+    const hitsRemaining = this.state.hitsRemaining - (isHit ? 1 : 0)
+
     this.setState({
       animationName: swings.asRandomKeyFrame(),
       isSwinging: true,
-      isHit: random.int(0, 4) >= 1 // 75% chance
+      isHit,
+      hitsRemaining
     })
     this.props.onSwing()
     this.timer = setTimeout(_ => this.setState({ isSwinging: false }), 2600)
@@ -110,11 +132,15 @@ export default class extends React.Component {
           <Pinata src="/static/img/pinata.png" onClick={this.handleClick} />
         </Thread>
         {this.state.isSwinging &&
+          this.state.hitsRemaining > 0 &&
           this.state.isHit &&
           <Whack src="/static/img/whack.png" />}
         {this.state.isSwinging &&
           !this.state.isHit &&
           <Miss src="/static/img/miss.png" />}
+        {this.state.isSwinging &&
+          this.state.hitsRemaining <= 0 &&
+          <Explode src="/static/img/explode.png" />}
       </Div>
     )
   }

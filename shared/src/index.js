@@ -9,7 +9,7 @@ export default class extends React.Component {
     super(props)
     this.state = {
       swingsCount: 0,
-      swingsRemaining: 3,
+      swingsRemaining: 8,
       stickers: {
         cyclops: {
           src: '/static/img/cyclops.png',
