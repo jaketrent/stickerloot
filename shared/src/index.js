@@ -8,6 +8,7 @@ export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      swingsCount: 0,
       swingsRemaining: 3,
       stickers: {
         cyclops: {
@@ -27,9 +28,19 @@ export default class extends React.Component {
     this.handleSwing = this.handleSwing.bind(this)
   }
   handleSwing() {
-    this.setState({ swingsRemaining: this.state.swingsRemaining - 1 })
+    this.setState({
+      swingsCount: this.state.swingsCount + 1,
+      swingsRemaining: this.state.swingsRemaining - 1
+    })
   }
   render() {
+    // return (
+    //   <End
+    //     stickers={this.state.stickers}
+    //     swingsCount={this.state.swingsCount}
+    //     swingsRemaining={this.state.swingsRemaining}
+    //   />
+    // )
     return (
       <div>
         {(this.state.swingsRemaining > 0 ||
@@ -41,7 +52,11 @@ export default class extends React.Component {
           />}
         {this.state.swingsRemaining <= 0 &&
           !Object.keys(this.state.stickers).every(s => s.count > 0) &&
-          <End />}
+          <End
+            stickers={this.state.stickers}
+            swingsCount={this.state.swingsCount}
+            swingsRemaining={this.state.swingsRemaining}
+          />}
       </div>
     )
   }
