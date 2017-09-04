@@ -16,31 +16,43 @@ const Pinata = glamorous.img({
   userSelect: 'none'
 })
 
-const Interjection = glamorous.img(
-  {
-    position: 'relative',
-    top: '100px',
-    left: '50%',
-    maxWidth: '80vw',
-    transform: 'translateX(-50%)'
-  },
-  _ => {
-    const appear = glamor.css.keyframes({
-      '0%': {
-        transform: 'translateX(-50%) scale(0) rotate(0deg)'
-      },
-      '60%': {
-        transform: `translateX(-50%) scale(1) rotate(${random.int(-15, 15)}deg)`
-      },
-      '100%': {
-        transform: 'translateX(-50%) scale(0) rotate(0deg)'
-      }
-    })
-    return {
-      animation: `${appear} 700ms forwards`
+const interjectionStyles = {
+  position: 'relative',
+  top: '100px',
+  left: '50%',
+  maxWidth: '80vw',
+  transform: 'translateX(-50%)'
+}
+const Whack = glamorous.img(interjectionStyles, _ => {
+  const appear = glamor.css.keyframes({
+    '0%': {
+      transform: 'translateX(-50%) scale(0) rotate(0deg)'
+    },
+    '60%': {
+      transform: `translateX(-50%) scale(1) rotate(${random.int(-15, 15)}deg)`
+    },
+    '100%': {
+      transform: 'translateX(-50%) scale(0) rotate(0deg)'
     }
+  })
+  return {
+    animation: `${appear} 700ms forwards`
   }
-)
+})
+
+const Miss = glamorous.img(interjectionStyles, _ => {
+  const appear = glamor.css.keyframes({
+    '0%': {
+      transform: 'translateX(-50%) translateY(0) scale(1)'
+    },
+    '100%': {
+      transform: 'translateX(-50%) translateY(100%) scale(0)'
+    }
+  })
+  return {
+    animation: `${appear} 700ms forwards`
+  }
+})
 
 const Thread = glamorous.div(
   {
@@ -96,10 +108,10 @@ export default class extends React.Component {
         </Thread>
         {this.state.isSwinging &&
           this.state.isHit &&
-          <Interjection src="/static/img/whack.png" />}
+          <Whack src="/static/img/whack.png" />}
         {this.state.isSwinging &&
           !this.state.isHit &&
-          <Interjection src="/static/img/miss.png" />}
+          <Miss src="/static/img/miss.png" />}
       </Div>
     )
   }
