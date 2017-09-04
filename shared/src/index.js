@@ -11,8 +11,16 @@ export default class extends React.Component {
     this.state = {
       swingsRemaining: 3,
       stickers: {
-        octopus: {
-          src: '/static/img/octopus.png',
+        cyclops: {
+          src: '/static/img/cyclops.png',
+          count: 3
+        },
+        muertos: {
+          src: '/static/img/muertos.png',
+          count: 3
+        },
+        squid: {
+          src: '/static/img/squid.png',
           count: 3
         }
       }
