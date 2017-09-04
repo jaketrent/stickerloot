@@ -85,6 +85,9 @@ export default class extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
   }
+  componentWillUnmount() {
+    clearTimeout(this.timer)
+  }
   handleClick(evt) {
     evt.preventDefault()
     if (this.timer) clearTimeout(this.timer)
