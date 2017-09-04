@@ -76,7 +76,7 @@ export default props =>
     <Stats>
       <Swings>
         <SwingsLabel>Swings Left</SwingsLabel>
-        <SwingsCount>{props.swings}</SwingsCount>
+        <SwingsCount>{props.swingsRemaining}</SwingsCount>
       </Swings>
       <Stickers>
         {Object.keys(props.stickers).map(key =>

@@ -1,9 +1,8 @@
 import glamorous from 'glamorous'
 import React from 'react'
 
-import TopNav from './ui/topnav'
-import Pinata from './ui/pinata'
-import Stats from './ui/stats'
+import Play from './pages/play'
+import End from './pages/end'
 
 export default class extends React.Component {
   constructor(props) {
@@ -33,12 +32,16 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-        <TopNav />
-        <Pinata onSwing={this.handleSwing} />
-        <Stats
-          swings={this.state.swingsRemaining}
-          stickers={this.state.stickers}
-        />
+        {(this.state.swingsRemaining > 0 ||
+          Object.keys(this.state.stickers).every(s => s.count > 0)) &&
+          <Play
+            onSwing={this.handleSwing}
+            swingsRemaining={this.state.swingsRemaining}
+            stickers={this.state.stickers}
+          />}
+        {this.state.swingsRemaining <= 0 &&
+          !Object.keys(this.state.stickers).every(s => s.count > 0) &&
+          <End />}
       </div>
     )
   }

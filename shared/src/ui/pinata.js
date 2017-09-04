@@ -12,7 +12,8 @@ const Pinata = glamorous.img({
   bottom: '-30vw',
   left: '-30vw',
   display: 'inline-block',
-  height: '50vw'
+  height: '50vw',
+  userSelect: 'none'
 })
 
 const Interjection = glamorous.img(
