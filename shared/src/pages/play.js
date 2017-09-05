@@ -7,6 +7,6 @@ import Stats from '../ui/stats'
 export default props =>
   <div>
     <TopNav />
-    <Pinata onSwing={props.onSwing} />
+    <Pinata onSwing={props.onSwing} onStickers={props.onStickers} />
     <Stats swingsRemaining={props.swingsRemaining} stickers={props.stickers} />
   </div>
