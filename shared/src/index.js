@@ -83,16 +83,20 @@ export default class extends React.Component {
     return (
       <div>
         <TopNav />
-        {this.state.swingsRemaining > 0 &&
+        {this.state.swingsRemaining > 0 && [
           <Pinata
+            key="pinata"
             hitsRemaining={this.state.hitsRemaining}
             isCracked={this.state.isCracked}
             onSwing={this.handleSwing}
-          />}
+          />,
+          <Stickers key="stickers" stickers={this.state.crackedStickers} />
+        ]}
         {this.state.swingsRemaining <= 0 &&
-          !Object.keys(this.state.stickers).every(s => s.count > 0) &&
+          !Object.keys(this.state.stickers).every(
+            id => this.state.stickers[id].count > 0
+          ) &&
           <GameOver swingsCount={this.state.swingsCount} />}
-        <Stickers stickers={this.state.crackedStickers} />
         <Actions
           isCracked={this.state.isCracked}
           onReset={this.handleReset}
