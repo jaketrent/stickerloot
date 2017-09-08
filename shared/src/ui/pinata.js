@@ -4,7 +4,6 @@ import React from 'react'
 
 import * as swings from '../util/swings'
 import * as random from '../util/random'
-import * as stickers from '../util/stickers'
 
 const bgColor = '#caaa65'
 
@@ -108,60 +107,14 @@ const Thread = glamorous.div(
       : {}
 )
 
-const Stickers = glamorous.div({
-  position: 'absolute',
-  top: '0',
-  left: '50%',
-  width: '100%',
-  transform: 'translateX(-50%)',
-  display: 'flex',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  pointerEvents: 'none'
-})
-const Sticker = glamorous.img(
-  {
-    maxWidth: '24vw'
-  },
-  _ => {
-    const zoom = glamor.css.keyframes({
-      '0%': {
-        transform: 'scale(0) translateY(0)'
-      },
-      '100%': {
-        transform: 'scale(1) translateY(30vh)'
-      }
-    })
-    return {
-      animation: `${zoom} 700ms ease-in forwards`
-    }
-  }
-)
-
-const Reset = glamorous.button({
-  display: 'block',
-  background: '#4CC13E',
-  color: '#fff',
-  padding: '0.5em 2em',
-  borderRadius: '6px',
-  margin: '64px auto 0 auto',
-  fontSize: '2em',
-  ':hover': {
-    background: '#329626'
-  }
-})
-
 export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isSwinging: false,
-      hitsRemaining: 3,
-      animationName: swings.first(),
-      stickers: []
+      animationName: swings.first()
     }
     this.handleClick = this.handleClick.bind(this)
-    this.handleResetClick = this.handleResetClick.bind(this)
   }
   componentWillUnmount() {
     clearTimeout(this.timer)
@@ -170,35 +123,21 @@ export default class extends React.Component {
     evt.preventDefault()
     if (this.timer) clearTimeout(this.timer)
     const isHit = random.int(0, 4) >= 1 // 75% chance
-    const hitsRemaining = this.state.hitsRemaining - (isHit ? 1 : 0)
-    const isCracked = hitsRemaining <= 0
 
     this.setState({
       animationName: swings.asRandomKeyFrame(),
       isSwinging: true,
-      isHit,
-      isCracked,
-      hitsRemaining,
-      stickers: isCracked ? stickers.random() : []
+      isHit
     })
-    this.props.onSwing()
+
+    this.props.onSwing(isHit)
     this.timer = setTimeout(_ => this.setState({ isSwinging: false }), 2600)
-  }
-  handleResetClick(evt) {
-    evt.preventDefault()
-    this.props.onStickers(this.state.stickers)
-    this.setState({
-      isSwinging: false,
-      isCracked: false,
-      hitsRemaining: 3,
-      stickers: []
-    })
   }
   render() {
     return (
       <Div position="relative">
         <Thread
-          isCracked={this.state.isCracked}
+          isCracked={this.props.isCracked}
           isSwinging={this.state.isSwinging}
           isHit={this.state.isHit}
           animationName={this.state.animationName}
@@ -206,23 +145,15 @@ export default class extends React.Component {
           <Pinata src="/static/img/pinata.png" onClick={this.handleClick} />
         </Thread>
         {this.state.isSwinging &&
-          this.state.hitsRemaining > 0 &&
+          this.props.hitsRemaining > 0 &&
           this.state.isHit &&
           <Whack src="/static/img/whack.png" />}
         {this.state.isSwinging &&
           !this.state.isHit &&
           <Miss src="/static/img/miss.png" />}
         {this.state.isSwinging &&
-          this.state.hitsRemaining <= 0 &&
+          this.props.hitsRemaining <= 0 &&
           <Explode src="/static/img/explode.png" />}
-        {this.state.isCracked && [
-          <Reset key="reset" onClick={this.handleResetClick}>
-            Piñata again!
-          </Reset>,
-          <Stickers key="stickers">
-            {this.state.stickers.map((s, i) => <Sticker key={i} src={s.src} />)}
-          </Stickers>
-        ]}
       </Div>
     )
   }

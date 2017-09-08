@@ -2,9 +2,6 @@ import * as glamor from 'glamor'
 import glamorous from 'glamorous'
 import React from 'react'
 
-import TopNav from '../ui/topnav'
-import Stats from '../ui/stats'
-
 const bounce = glamor.css.keyframes({
   '100%': {
     transform: 'rotate(180deg) translate(50%, -50vh)'
@@ -44,13 +41,9 @@ const Pinata = glamorous.img({
 })
 
 export default props =>
-  <div>
-    <TopNav />
-    <End>
-      <GameOver>Fiesta's Over!</GameOver>
-      <SwingsLabel>Total Swings</SwingsLabel>
-      <SwingsCount>{props.swingsCount}</SwingsCount>
-      <Pinata src="/static/img/pinata.png" />
-    </End>
-    <Stats swingsRemaining={props.swingsRemaining} stickers={props.stickers} />
-  </div>
+  <End>
+    <GameOver>Fiesta's Over!</GameOver>
+    <SwingsLabel>Total Swings</SwingsLabel>
+    <SwingsCount>{props.swingsCount}</SwingsCount>
+    <Pinata src="/static/img/pinata.png" />
+  </End>

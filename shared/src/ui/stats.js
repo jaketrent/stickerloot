@@ -72,27 +72,8 @@ const Sticker = glamorous.div({
   alignItems: 'center'
 })
 
-const Trade = glamorous.button({
-  position: 'fixed',
-  bottom: '100px',
-  left: 0,
-  display: 'block',
-  background: '#4CC13E',
-  color: '#fff',
-  padding: '0.5em 2em',
-  margin: '64px auto 0 auto',
-  fontSize: '1.25em',
-  lineHeight: '3em',
-  border: '0',
-  width: '100%',
-  ':hover': {
-    background: '#329626'
-  }
-})
-
 export default props =>
   <div>
-    <Trade>Trade Stickers for Swings!</Trade>
     <Stats>
       <Swings>
         <SwingsLabel>Swings Left</SwingsLabel>
