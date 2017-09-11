@@ -20,6 +20,9 @@ const render = App => {
     <head>
       <title>Sticker Loot | NewInReact.com</title>
       <link rel="stylesheet" href="/static/css/styles.css" />
+      <meta name="HandheldFriendly" content="True" />
+      <meta name="MobileOptimized" content="320" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <style>${css}</style>
     </head>
     <body>
