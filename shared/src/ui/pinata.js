@@ -115,13 +115,24 @@ export default class extends React.Component {
       animationName: swings.first()
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleAnimationEnd = this.handleAnimationEnd.bind(this)
+  }
+  componentDidMount() {
+    this.threadEl.addEventListener('animationend', this.handleAnimationEnd)
+    this.threadEl.addEventListener('animationcancel', this.handleAnimationEnd)
   }
   componentWillUnmount() {
-    clearTimeout(this.timer)
+    this.threadEl.removeEventListener('animationend', this.handleAnimationEnd)
+    this.threadEl.removeEventListener(
+      'animationcancel',
+      this.handleAnimationEnd
+    )
+  }
+  handleAnimationEnd(evt) {
+    this.setState({ isSwinging: false, isHit: false })
   }
   handleClick(evt) {
     evt.preventDefault()
-    if (this.timer) clearTimeout(this.timer)
     const isHit = random.int(0, 4) >= 1 // 75% chance
 
     this.setState({
@@ -131,7 +142,6 @@ export default class extends React.Component {
     })
 
     this.props.onSwing(isHit)
-    this.timer = setTimeout(_ => this.setState({ isSwinging: false }), 2600)
   }
   render() {
     return (
@@ -141,6 +151,7 @@ export default class extends React.Component {
           isSwinging={this.state.isSwinging}
           isHit={this.state.isHit}
           animationName={this.state.animationName}
+          innerRef={el => (this.threadEl = el)}
         >
           <Pinata src="/static/img/pinata.png" onClick={this.handleClick} />
         </Thread>
