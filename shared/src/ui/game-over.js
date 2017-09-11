@@ -20,7 +20,8 @@ const GameOver = glamorous.div({
   fontSize: '3em',
   textTransform: 'uppercase',
   color: 'red',
-  fontWeight: '800'
+  fontWeight: '800',
+  textAlign: 'center'
 })
 const SwingsLabel = glamorous.div({
   marginTop: '24px'
