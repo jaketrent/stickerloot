@@ -43,26 +43,27 @@ export default class extends React.Component {
     this.setState({
       hitsRemaining: 3,
       crackedStickers: [],
-      isCracked: false,
-      stickers: this.state.crackedStickers.reduce((acc, sticker) => {
-        acc[sticker.id] = {
-          ...this.state.stickers[sticker.id],
-          count: this.state.stickers[sticker.id].count + 1
-        }
-        return acc
-      }, this.state.stickers)
+      isCracked: false
     })
   }
   handleSwing(isHit) {
     const hitsRemaining = this.state.hitsRemaining - (isHit ? 1 : 0)
+    const crackedStickers = stickers.random()
     this.setState({
       hitsRemaining,
       swingsCount: this.state.swingsCount + 1,
       swingsRemaining: this.state.swingsRemaining - 1,
       ...(hitsRemaining === 0
         ? {
-            crackedStickers: stickers.random(),
-            isCracked: true
+            crackedStickers,
+            isCracked: true,
+            stickers: crackedStickers.reduce((acc, sticker) => {
+              acc[sticker.id] = {
+                ...this.state.stickers[sticker.id],
+                count: this.state.stickers[sticker.id].count + 1
+              }
+              return acc
+            }, this.state.stickers)
           }
         : {})
     })
