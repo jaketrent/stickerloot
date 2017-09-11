@@ -85,7 +85,7 @@ const Thread = glamorous.div(
     left: '50vw',
     display: 'inline-block',
     width: '2px',
-    height: '200px',
+    height: '30vh',
     background: '#ababab',
     backgroundImage: `repeating-linear-gradient(-45deg,
       red 10px,
