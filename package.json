@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "concurrently \"rm -rf node_modules\" \"cd shared && rm -rf node_modules\" \"cd server && rm -rf node_modules\"",
-    "bootstrap": "concurrently \"cd shared && npm install\" \"cd server && npm install\"",
+    "bootstrap": "concurrently \"cd shared && npm install\" \"cd server && npm install\" \"cd client && npm install\"",
     "start": "concurrently \"cd client && npm start\" \"cd server && npm start\" \"cd shared && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
