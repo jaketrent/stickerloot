@@ -1,6 +1,7 @@
 const copy = require('recursive-copy')
 const fs = require('fs')
 const browserify = require('browserify')
+const mkdirp = require('mkdirp')
 const path = require('path')
 const pathmodify = require('pathmodify')
 const watchify = require('watchify')
@@ -10,6 +11,8 @@ const output = path.join(__dirname, '..', 'dist', 'index.js')
 const outputDir = path.join(__dirname, '..', 'dist')
 const shared = path.join(__dirname, '..', '..', 'shared', 'dist')
 const staticDir = path.join(__dirname, '..', 'static')
+
+mkdirp.sync(outputDir)
 
 const b = browserify({
   entries: [entry],

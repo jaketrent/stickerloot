@@ -9,12 +9,12 @@
   },
   "scripts": {
     "start": "npm run build -- --watch",
-    "buildold": "babel src/ --out-dir dist/ --ignore spec.js",
     "build": "node build"
   },
   "devDependencies": {
     "babelify": "^7.3.0",
     "browserify": "^14.4.0",
+    "mkdirp": "^0.5.1",
     "pathmodify": "^0.5.0",
     "recursive-copy": "^2.0.6",
     "watchify": "^3.9.0"
