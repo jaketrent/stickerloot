@@ -20,20 +20,7 @@ export default class extends React.Component {
       swingsCount: 0,
       swingsRemaining: 8,
       // TODO: pull from the set
-      stickers: {
-        cyclops: {
-          src: '/static/img/cyclops.png',
-          count: 0
-        },
-        muertos: {
-          src: '/static/img/muertos.png',
-          count: 0
-        },
-        squid: {
-          src: '/static/img/squid.png',
-          count: 0
-        }
-      }
+      stickers: stickers.initStartingSet()
     }
     this.handleReset = this.handleReset.bind(this)
     this.handleSwing = this.handleSwing.bind(this)

@@ -18,3 +18,9 @@ const ids = Object.keys(theSet)
 
 export const random = _ =>
   [1, 2, 3].map(i => theSet[ids[randomUtil.int(0, ids.length)]])
+
+export const initStartingSet = _ =>
+  Object.keys(theSet).reduce((acc, id) => {
+    acc[id] = { ...theSet[id], count: 0 }
+    return acc
+  }, {})
