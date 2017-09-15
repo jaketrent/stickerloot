@@ -8,6 +8,8 @@ import { renderStatic } from 'glamor/server'
 
 import Index from '@shared/index'
 
+import games from './games'
+
 const app = express()
 const port = process.env.PORT || 3001
 const staticDir = path.join(__dirname, '..', '..', 'client', 'dist')
