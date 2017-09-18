@@ -18,7 +18,7 @@ const app = express()
 const port = process.env.PORT || 3001
 const staticDir = path.join(__dirname, '..', '..', 'client', 'dist')
 
-const render = (App, game) => {
+const render = (App, serverState) => {
   const { html, css, ids } = renderStatic(() => ReactDOM.renderToString(App))
 
   return `
@@ -34,7 +34,7 @@ const render = (App, game) => {
     <body>
       <div id="app">${html}</div>
       <script>window._glam = ${JSON.stringify(ids)}</script>
-      <script>window._game = ${JSON.stringify(game)}</script>
+      <script>window._serverState = ${JSON.stringify(serverState)}</script>
       <script src="/static/index.js"></script>
     </body>
   </html>
@@ -42,6 +42,7 @@ const render = (App, game) => {
 }
 
 const send = (req, res) => {
+  const { serverState } = req
   res.send(
     render(
       <StaticRouter context={{}} location={req.url}>
@@ -49,21 +50,21 @@ const send = (req, res) => {
           <Route
             exact
             path="/"
-            render={props => <Index {...props} game={req.game} />}
+            render={props => <Index {...props} serverState={serverState} />}
           />
           <Route
             exact
             path="/new"
-            render={props => <Game {...props} game={req.game} />}
+            render={props => <Game {...props} serverState={serverState} />}
           />
           <Route
             exact
             path="/games/:id"
-            render={props => <Game {...props} game={req.game} />}
+            render={props => <Game {...props} serverState={serverState} />}
           />
         </Switch>
       </StaticRouter>,
-      req.game
+      serverState
     )
   )
 }
@@ -72,7 +73,7 @@ app.get('/', send)
 app.get(
   '/new',
   (req, res, next) => {
-    req.game = games.create()
+    req.serverState = { game: games.create() }
     next()
   },
   send
@@ -80,7 +81,7 @@ app.get(
 app.get(
   '/games/:id',
   (req, res, next) => {
-    req.game = games.find(req.params.id)
+    req.serverState = { game: games.find(req.params.id) }
     next()
   },
   send

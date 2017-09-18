@@ -13,17 +13,17 @@ ReactDOM.render(
       <Route
         exact
         path="/"
-        render={props => <Index {...props} game={window._game} />}
+        render={props => <Index {...props} serverState={window._serverState} />}
       />
       <Route
         exact
         path="/new"
-        render={props => <Game {...props} game={window._game} />}
+        render={props => <Game {...props} serverState={window._serverState} />}
       />
       <Route
         exact
         path="/games/:id"
-        render={props => <Game {...props} game={window._game} />}
+        render={props => <Game {...props} serverState={window._serverState} />}
       />
     </Switch>
   </BrowserRouter>,

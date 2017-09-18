@@ -32,8 +32,8 @@ export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      ...this.props.game,
-      gameStateKeys: Object.keys(this.props.game),
+      ...this.props.serverState.game,
+      gameStateKeys: Object.keys(this.props.serverState.game),
       crackedStickers: [],
       // TODO: maybe consolidate on crackedStickers state?
       isCracked: false
