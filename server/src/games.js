@@ -14,5 +14,12 @@ export const create = _ => {
     stickers: stickers.initStartingSet()
   }
   games[id] = newGame
-  return newGame
+  return { ...newGame }
+}
+
+export const find = id => ({ ...games[id] })
+
+export const update = (id, game) => {
+  games[id] = game
+  return { ...game }
 }

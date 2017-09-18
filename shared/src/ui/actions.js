@@ -35,7 +35,9 @@ export default props =>
     <Button
       onClick={props.onTrade}
       disabled={
-        !Object.keys(props.stickers).every(id => props.stickers[id].count > 0)
+        !Object.keys(props.stickers || []).every(
+          id => props.stickers[id].count > 0
+        )
       }
     >
       Trade Stickers

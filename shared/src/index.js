@@ -19,7 +19,6 @@ export default class extends React.Component {
       isCracked: false,
       swingsCount: 0,
       swingsRemaining: 8,
-      // TODO: pull from the set
       stickers: stickers.initStartingSet()
     }
     this.handleReset = this.handleReset.bind(this)
@@ -71,30 +70,13 @@ export default class extends React.Component {
     return (
       <div>
         <TopNav />
-        {this.state.swingsRemaining > 0 && [
-          <Pinata
-            key="pinata"
-            hitsRemaining={this.state.hitsRemaining}
-            isCracked={this.state.isCracked}
-            onSwing={this.handleSwing}
-          />,
-          <Stickers key="stickers" stickers={this.state.crackedStickers} />
-        ]}
-        {this.state.swingsRemaining <= 0 &&
-          !Object.keys(this.state.stickers).every(
-            id => this.state.stickers[id].count > 0
-          ) &&
-          <GameOver swingsCount={this.state.swingsCount} />}
-        <Actions
-          isCracked={this.state.isCracked}
-          onReset={this.handleReset}
-          onTrade={this.handleTrade}
-          stickers={this.state.stickers}
-        />
-        <Stats
-          swingsRemaining={this.state.swingsRemaining}
-          stickers={this.state.stickers}
-        />
+        <h1>Welcome</h1>
+        <p>
+          Here's how you play
+        </p>
+        <p>
+          Start a new game
+        </p>
       </div>
     )
   }

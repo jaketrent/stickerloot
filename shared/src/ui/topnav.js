@@ -35,7 +35,9 @@ const Link = glamorous.a({
 
 export default _ =>
   <TopNav>
-    <Logo src="/static/img/logo.png" />
-    <Link href="/">New</Link>
-    <Link href="/haul/abc123">Haul abc123</Link>
+    <Link href="/">
+      <Logo src="/static/img/logo.png" />
+    </Link>
+    <Link href="/new">New</Link>
+    <Link href="/games/abc123">abc123</Link>
   </TopNav>

@@ -80,7 +80,7 @@ export default props =>
         <SwingsCount>{props.swingsRemaining}</SwingsCount>
       </Swings>
       <Stickers>
-        {Object.keys(props.stickers).map(key =>
+        {Object.keys(props.stickers || []).map(key =>
           <Sticker key={props.stickers[key].src}>
             <StickerCount>{props.stickers[key].count}</StickerCount>
             <StickerImg src={props.stickers[key].src} />
