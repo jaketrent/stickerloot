@@ -1,5 +1,6 @@
 import glamorous from 'glamorous'
 import React from 'react'
+import { withRouter } from 'react-router'
 
 const bgColor = '#caaa65'
 
@@ -18,20 +19,28 @@ const TopNav = glamorous.div({
   padding: '0 16px'
 })
 
-const Link = glamorous.a({
-  display: 'inline-flex',
-  alignItems: 'center',
-  height: '100%',
-  color: '#fff',
-  textDecoration: 'none',
-  padding: '0 12px',
-  transition: 'all 300ms',
-  textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
-  ':hover': {
-    background: '#fff',
-    color: bgColor
-  }
-})
+const linkHoverStyles = {
+  background: '#fff',
+  color: bgColor
+}
+const LinkAnchor = glamorous.a(
+  {
+    display: 'inline-flex',
+    alignItems: 'center',
+    height: '100%',
+    color: '#fff',
+    textDecoration: 'none',
+    padding: '0 12px',
+    transition: 'all 300ms',
+    textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
+    ':hover': linkHoverStyles
+  },
+  ({ isActive }) => (isActive ? linkHoverStyles : null)
+)
+
+const Link = withRouter(props =>
+  <LinkAnchor {...props} isActive={props.location.pathname === props.href} />
+)
 
 export default props =>
   <TopNav>
