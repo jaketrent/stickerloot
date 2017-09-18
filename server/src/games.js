@@ -23,3 +23,5 @@ export const update = (id, game) => {
   games[id] = game
   return { ...game }
 }
+
+export const allIds = _ => Object.keys(games)

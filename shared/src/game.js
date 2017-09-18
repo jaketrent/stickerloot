@@ -95,7 +95,7 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-        <TopNav />
+        <TopNav gameIds={this.props.serverState.gameIds} />
         {this.state.swingsRemaining > 0 && [
           <Pinata
             key="pinata"

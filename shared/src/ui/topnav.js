@@ -33,11 +33,11 @@ const Link = glamorous.a({
   }
 })
 
-export default _ =>
+export default props =>
   <TopNav>
     <Link href="/">
       <Logo src="/static/img/logo.png" />
     </Link>
     <Link href="/new">New</Link>
-    <Link href="/games/abc123">abc123</Link>
+    {props.gameIds.map(id => <Link key={id} href={`/games/${id}`}>{id}</Link>)}
   </TopNav>

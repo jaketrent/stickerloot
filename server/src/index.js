@@ -69,11 +69,18 @@ const send = (req, res) => {
   )
 }
 
-app.get('/', send)
+app.get(
+  '/',
+  (req, res, next) => {
+    req.serverState = { gameIds: games.allIds() }
+    next()
+  },
+  send
+)
 app.get(
   '/new',
   (req, res, next) => {
-    req.serverState = { game: games.create() }
+    req.serverState = { game: games.create(), gameIds: games.allIds() }
     next()
   },
   send
@@ -81,7 +88,10 @@ app.get(
 app.get(
   '/games/:id',
   (req, res, next) => {
-    req.serverState = { game: games.find(req.params.id) }
+    req.serverState = {
+      game: games.find(req.params.id),
+      gameIds: games.allIds()
+    }
     next()
   },
   send

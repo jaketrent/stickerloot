@@ -69,7 +69,7 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-        <TopNav />
+        <TopNav gameIds={this.props.serverState.gameIds} />
         <h1>Welcome</h1>
         <p>
           Here's how you play
