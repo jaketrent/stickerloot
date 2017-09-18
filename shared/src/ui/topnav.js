@@ -1,5 +1,7 @@
 import glamorous from 'glamorous'
+import Language from './language'
 import React from 'react'
+
 
 const bgColor = '#caaa65'
 
@@ -40,4 +42,5 @@ export default props =>
     </Link>
     <Link href="/new">New</Link>
     {props.gameIds.map(id => <Link key={id} href={`/games/${id}`}>{id}</Link>)}
+    <Language />
   </TopNav>

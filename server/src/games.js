@@ -1,11 +1,10 @@
-import uuid from 'uuid'
-
+import * as ids from './ids'
 import * as stickers from '@shared/util/stickers'
 
 const games = {}
 
 export const create = _ => {
-  const id = uuid.v4()
+  const id = ids.generate()
   const newGame = {
     id,
     hitsRemaining: 3,
