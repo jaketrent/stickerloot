@@ -43,4 +43,4 @@ const nouns = [
 
 // naive, vulnerable to collisions, for demo only
 export const generate = _ =>
-  adjs[random.int(0, adjs.length)] + ' ' + nouns[random.int(0, nouns.length)]
+  adjs[random.int(0, adjs.length)] + '-' + nouns[random.int(0, nouns.length)]
