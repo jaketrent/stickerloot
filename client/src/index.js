@@ -17,11 +17,6 @@ ReactDOM.render(
       />
       <Route
         exact
-        path="/new"
-        render={props => <Game {...props} serverState={window._serverState} />}
-      />
-      <Route
-        exact
         path="/games/:id"
         render={props => <Game {...props} serverState={window._serverState} />}
       />

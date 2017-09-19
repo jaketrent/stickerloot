@@ -54,11 +54,6 @@ const send = (req, res) => {
           />
           <Route
             exact
-            path="/new"
-            render={props => <Game {...props} serverState={serverState} />}
-          />
-          <Route
-            exact
             path="/games/:id"
             render={props => <Game {...props} serverState={serverState} />}
           />
@@ -77,14 +72,9 @@ app.get(
   },
   send
 )
-app.get(
-  '/new',
-  (req, res, next) => {
-    req.serverState = { game: games.create(), gameIds: games.allIds() }
-    next()
-  },
-  send
-)
+app.get('/new', (_, res) => {
+  res.redirect(`/games/${games.create().id}`)
+})
 app.get(
   '/games/:id',
   (req, res, next) => {
