@@ -4,17 +4,15 @@ import React from 'react'
 
 const bounce = glamor.css.keyframes({
   '100%': {
-    transform: 'rotate(180deg) translate(50%, -50vh)'
+    transform: 'rotate(180deg) translate(50%, -43vh)'
   }
 })
 
 const End = glamorous.div({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
   alignItems: 'center',
-  padding: '10vw 10px',
-  height: '75vh' // magic #
+  padding: '10vw 10px'
 })
 const GameOver = glamorous.div({
   fontSize: '3em',
