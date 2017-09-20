@@ -4,9 +4,10 @@ import React from 'react'
 const Actions = glamorous.div({
   position: 'fixed',
   left: 0,
-  bottom: '100px',
+  bottom: 0,
   display: 'flex',
-  width: '100%'
+  width: '100%',
+  height: '50px'
 })
 
 const Button = glamorous.button(
@@ -14,8 +15,7 @@ const Button = glamorous.button(
     flex: '1',
     display: 'block',
     color: '#fff',
-    fontSize: '1.25em',
-    padding: '1em 0.5em',
+    fontSize: '1.125em',
     border: 'none',
     cursor: 'pointer'
   },

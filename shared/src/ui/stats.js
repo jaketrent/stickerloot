@@ -6,7 +6,7 @@ const bgColor = '#1b91ce'
 const Stats = glamorous.div({
   display: 'flex',
   position: 'fixed',
-  bottom: 0,
+  bottom: '50px',
   left: 0,
   width: '100%',
   display: 'flex',

@@ -110,14 +110,14 @@ export default class extends React.Component {
             id => this.state.stickers[id].count > 0
           ) &&
           <GameOver swingsCount={this.state.swingsCount} />}
+        <Stats
+          swingsRemaining={this.state.swingsRemaining}
+          stickers={this.state.stickers}
+        />
         <Actions
           isCracked={this.state.isCracked}
           onReset={this.handleReset}
           onTrade={this.handleTrade}
-          stickers={this.state.stickers}
-        />
-        <Stats
-          swingsRemaining={this.state.swingsRemaining}
           stickers={this.state.stickers}
         />
       </div>
