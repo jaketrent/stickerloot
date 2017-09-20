@@ -78,8 +78,11 @@ app.get('/new', (_, res) => {
 app.get(
   '/games/:id',
   (req, res, next) => {
+    const game = games.find(req.params.id)
+    if (!game) return res.redirect(301, '/')
+
     req.serverState = {
-      game: games.find(req.params.id),
+      game,
       gameIds: games.allIds()
     }
     next()

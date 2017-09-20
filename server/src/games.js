@@ -16,7 +16,7 @@ export const create = _ => {
   return { ...newGame }
 }
 
-export const find = id => ({ ...games[id] })
+export const find = id => (games[id] ? { ...games[id] } : null)
 
 export const update = (id, game) => {
   games[id] = game
