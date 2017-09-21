@@ -1,5 +1,6 @@
 import * as glamor from 'glamor'
 import glamorous from 'glamorous'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 const bounce = glamor.css.keyframes({
@@ -14,7 +15,7 @@ const End = glamorous.div({
   alignItems: 'center',
   padding: '10vw 10px'
 })
-const GameOver = glamorous.div({
+const GameOverDiv = glamorous.div({
   fontSize: '3em',
   textTransform: 'uppercase',
   color: 'red',
@@ -39,10 +40,15 @@ const Pinata = glamorous.img({
   animation: `${bounce} 400ms ease-in 1000ms forwards`
 })
 
-export default props =>
+const GameOver = props =>
   <End>
-    <GameOver>Fiesta's Over!</GameOver>
+    <GameOverDiv>Fiesta's Over!</GameOverDiv>
     <SwingsLabel>Total Swings</SwingsLabel>
     <SwingsCount>{props.swingsCount}</SwingsCount>
     <Pinata src="/static/img/pinata.png" />
   </End>
+GameOver.propTypes = {
+  swingsCount: PropTypes.number.isRequired
+}
+
+export default GameOver

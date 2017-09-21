@@ -1,4 +1,5 @@
 import glamorous from 'glamorous'
+import PropTypes from 'prop-types'
 import React from 'react'
 import { withRouter } from 'react-router'
 
@@ -10,7 +11,7 @@ const Logo = glamorous.img({
   margin: '4px 16px 4px 0'
 })
 
-const TopNav = glamorous.div({
+const TopNavDiv = glamorous.div({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -42,11 +43,17 @@ const Link = withRouter(props =>
   <LinkAnchor {...props} isActive={props.location.pathname === props.href} />
 )
 
-export default props =>
-  <TopNav>
+const TopNav = props =>
+  <TopNavDiv>
     <Link href="/">
       <Logo src="/static/img/logo.png" />
     </Link>
     <Link href="/new">New</Link>
     {props.gameIds.map(id => <Link key={id} href={`/games/${id}`}>{id}</Link>)}
-  </TopNav>
+  </TopNavDiv>
+
+TopNav.propTypes = {
+  gameIds: PropTypes.arrayOf(PropTypes.string).isRequired
+}
+
+export default TopNav

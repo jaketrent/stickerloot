@@ -1,7 +1,8 @@
 import glamorous from 'glamorous'
+import PropTypes from 'prop-types'
 import React from 'react'
 
-const Actions = glamorous.div({
+const ActionsDiv = glamorous.div({
   position: 'fixed',
   left: 0,
   bottom: 0,
@@ -27,8 +28,8 @@ const Button = glamorous.button(
   })
 )
 
-export default props =>
-  <Actions>
+const Actions = props =>
+  <ActionsDiv>
     <Button onClick={props.onReset} disabled={!props.isCracked}>
       New Piñata
     </Button>
@@ -42,4 +43,11 @@ export default props =>
     >
       Trade Stickers
     </Button>
-  </Actions>
+  </ActionsDiv>
+Actions.propTypes = {
+  isCracked: PropTypes.bool.isRequired,
+  onReset: PropTypes.func.isRequired,
+  onTrade: PropTypes.func.isRequired,
+  stickers: PropTypes.object.isRequired
+}
+export default Actions

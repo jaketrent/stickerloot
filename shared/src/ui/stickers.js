@@ -1,5 +1,6 @@
 import * as glamor from 'glamor'
 import glamorous from 'glamorous'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 const Stickers = glamorous.div({
@@ -33,9 +34,19 @@ const Sticker = glamorous.img(
   }
 )
 
-export default props =>
+const Stickers = props =>
   Array.isArray(props.stickers) && props.stickers.length > 0
     ? <Stickers>
         {props.stickers.map((s, i) => <Sticker key={i} src={s.src} />)}
       </Stickers>
     : null
+
+Stickers.propTypes = {
+  stickers: PropTypes.arrayOf(
+    PropTypes.shape({
+      src: PropTypes.string.isRequired
+    })
+  ).isRequired
+}
+
+export default Stickers

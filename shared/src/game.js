@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import 'isomorphic-fetch'
 
 import glamorous from 'glamorous'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import Actions from './ui/actions'
@@ -28,7 +29,7 @@ const extractGame = state =>
     return acc
   }, {})
 
-export default class extends React.Component {
+class Game extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -124,3 +125,18 @@ export default class extends React.Component {
     )
   }
 }
+
+Game.propTypes = {
+  serverState: PropTypes.shape({
+    gameIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+    game: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      hitsRemaining: PropTypes.number.isRequired,
+      swingsCount: PropTypes.number.isRequired,
+      swingsRemaining: PropTypes.number.isRequired,
+      stickers: PropTypes.object.isRequired
+    })
+  }).isRequired
+}
+
+export default Game

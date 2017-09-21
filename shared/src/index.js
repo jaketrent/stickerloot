@@ -1,4 +1,5 @@
 import glamorous from 'glamorous'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import TopNav from './ui/topnav'
@@ -7,7 +8,7 @@ const Content = glamorous.div({
   padding: '20px'
 })
 
-export default props =>
+const Index = props =>
   <div>
     <TopNav gameIds={props.serverState.gameIds} />
     <Content>
@@ -33,3 +34,10 @@ export default props =>
       </p>
     </Content>
   </div>
+Index.propTypes = {
+  serverState: PropTypes.shape({
+    gameIds: PropTypes.arrayOf(PropTypes.string).isRequired
+  }).isRequired
+}
+
+export default Index

@@ -1,5 +1,6 @@
 import * as glamor from 'glamor'
 import glamorous, { Div } from 'glamorous'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import * as swings from '../util/swings'
@@ -7,7 +8,7 @@ import * as random from '../util/random'
 
 const bgColor = '#caaa65'
 
-const Pinata = glamorous.img({
+const PinataImg = glamorous.img({
   position: 'absolute',
   bottom: '-30vw',
   left: '-30vw',
@@ -107,7 +108,7 @@ const Thread = glamorous.div(
       : {}
 )
 
-export default class extends React.Component {
+class Pinata extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -153,7 +154,7 @@ export default class extends React.Component {
           animationName={this.state.animationName}
           innerRef={el => (this.threadEl = el)}
         >
-          <Pinata src="/static/img/pinata.png" onClick={this.handleClick} />
+          <PinataImg src="/static/img/pinata.png" onClick={this.handleClick} />
         </Thread>
         {this.state.isSwinging &&
           this.props.hitsRemaining > 0 &&
@@ -169,3 +170,11 @@ export default class extends React.Component {
     )
   }
 }
+
+Pinata.propTypes = {
+  hitsRemaining: PropTypes.number.isRequired,
+  isCracked: PropTypes.bool.isRequired,
+  onSwing: PropTypes.func.isRequired
+}
+
+export default Pinata

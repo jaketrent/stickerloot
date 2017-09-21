@@ -1,9 +1,10 @@
 import glamorous from 'glamorous'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 const bgColor = '#1b91ce'
 
-const Stats = glamorous.div({
+const StatsDiv = glamorous.div({
   display: 'flex',
   position: 'fixed',
   bottom: '50px',
@@ -72,9 +73,9 @@ const Sticker = glamorous.div({
   alignItems: 'center'
 })
 
-export default props =>
+const Stats = props =>
   <div>
-    <Stats>
+    <StatsDiv>
       <Swings>
         <SwingsLabel>Swings Left</SwingsLabel>
         <SwingsCount>{props.swingsRemaining}</SwingsCount>
@@ -87,5 +88,11 @@ export default props =>
           </Sticker>
         )}
       </Stickers>
-    </Stats>
+    </StatsDiv>
   </div>
+Stats.propTypes = {
+  stickers: PropTypes.object.isRequired,
+  swingsRemaining: PropTypes.number.isRequired
+}
+
+export default Stats
