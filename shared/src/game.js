@@ -29,18 +29,14 @@ const extractGame = state =>
     return acc
   }, {})
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
+const Game = React.createClass({
+  getInitialState() {
+    return {
       ...this.props.serverState.game,
       gameStateKeys: Object.keys(this.props.serverState.game),
       crackedStickers: []
     }
-    this.handleReset = this.handleReset.bind(this)
-    this.handleSwing = this.handleSwing.bind(this)
-    this.handleTrade = this.handleTrade.bind(this)
-  }
+  },
   handleReset() {
     this.setState(
       {
@@ -49,7 +45,7 @@ class Game extends React.Component {
       },
       _ => saveGameState(extractGame(this.state))
     )
-  }
+  },
   handleSwing(isHit) {
     const hitsRemaining = this.state.hitsRemaining - (isHit ? 1 : 0)
     const crackedStickers = stickers.random()
@@ -73,7 +69,7 @@ class Game extends React.Component {
       },
       _ => saveGameState(extractGame(this.state))
     )
-  }
+  },
   handleTrade() {
     this.setState(
       {
@@ -88,7 +84,7 @@ class Game extends React.Component {
       },
       _ => saveGameState(extractGame(this.state))
     )
-  }
+  },
   render() {
     return (
       <div>
@@ -120,7 +116,7 @@ class Game extends React.Component {
       </div>
     )
   }
-}
+})
 
 Game.propTypes = {
   serverState: PropTypes.shape({

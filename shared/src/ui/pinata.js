@@ -108,30 +108,27 @@ const Thread = glamorous.div(
       : {}
 )
 
-class Pinata extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
+const Pinata = React.createClass({
+  getInitialState() {
+    return {
       isSwinging: false,
       animationName: swings.first()
     }
-    this.handleClick = this.handleClick.bind(this)
-    this.handleAnimationEnd = this.handleAnimationEnd.bind(this)
-  }
+  },
   componentDidMount() {
     this.threadEl.addEventListener('animationend', this.handleAnimationEnd)
     this.threadEl.addEventListener('animationcancel', this.handleAnimationEnd)
-  }
+  },
   componentWillUnmount() {
     this.threadEl.removeEventListener('animationend', this.handleAnimationEnd)
     this.threadEl.removeEventListener(
       'animationcancel',
       this.handleAnimationEnd
     )
-  }
+  },
   handleAnimationEnd(evt) {
     this.setState({ isSwinging: false, isHit: false })
-  }
+  },
   handleClick(evt) {
     evt.preventDefault()
     const isHit = random.int(0, 4) >= 1 // 75% chance
@@ -143,7 +140,7 @@ class Pinata extends React.Component {
     })
 
     this.props.onSwing(isHit)
-  }
+  },
   render() {
     return (
       <Div position="relative">
@@ -169,7 +166,7 @@ class Pinata extends React.Component {
       </Div>
     )
   }
-}
+})
 
 Pinata.propTypes = {
   hitsRemaining: PropTypes.number.isRequired,
