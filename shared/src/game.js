@@ -35,9 +35,7 @@ class Game extends React.Component {
     this.state = {
       ...this.props.serverState.game,
       gameStateKeys: Object.keys(this.props.serverState.game),
-      crackedStickers: [],
-      // TODO: maybe consolidate on crackedStickers state?
-      isCracked: false
+      crackedStickers: []
     }
     this.handleReset = this.handleReset.bind(this)
     this.handleSwing = this.handleSwing.bind(this)
@@ -47,8 +45,7 @@ class Game extends React.Component {
     this.setState(
       {
         hitsRemaining: 3,
-        crackedStickers: [],
-        isCracked: false
+        crackedStickers: []
       },
       _ => saveGameState(extractGame(this.state))
     )
@@ -64,7 +61,6 @@ class Game extends React.Component {
         ...(hitsRemaining === 0
           ? {
               crackedStickers,
-              isCracked: true,
               stickers: crackedStickers.reduce((acc, sticker) => {
                 acc[sticker.id] = {
                   ...this.state.stickers[sticker.id],
@@ -101,7 +97,7 @@ class Game extends React.Component {
           <Pinata
             key="pinata"
             hitsRemaining={this.state.hitsRemaining}
-            isCracked={this.state.isCracked}
+            isCracked={this.state.crackedStickers.length > 0}
             onSwing={this.handleSwing}
           />,
           <Stickers key="stickers" stickers={this.state.crackedStickers} />
@@ -116,7 +112,7 @@ class Game extends React.Component {
           stickers={this.state.stickers}
         />
         <Actions
-          isCracked={this.state.isCracked}
+          isCracked={this.state.crackedStickers.length > 0}
           onReset={this.handleReset}
           onTrade={this.handleTrade}
           stickers={this.state.stickers}
