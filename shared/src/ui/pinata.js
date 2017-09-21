@@ -1,7 +1,6 @@
 import * as glamor from 'glamor'
 import glamorous, { Div } from 'glamorous'
-import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import * as swings from '../util/swings'
 import * as random from '../util/random'

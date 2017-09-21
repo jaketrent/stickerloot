@@ -1,7 +1,6 @@
 import * as glamor from 'glamor'
 import glamorous from 'glamorous'
-import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 const bounce = glamor.css.keyframes({
   '100%': {

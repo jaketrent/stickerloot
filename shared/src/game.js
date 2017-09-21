@@ -2,8 +2,7 @@ import 'babel-polyfill'
 import 'isomorphic-fetch'
 
 import glamorous from 'glamorous'
-import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import Actions from './ui/actions'
 import GameOver from './ui/game-over'
