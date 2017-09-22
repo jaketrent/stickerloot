@@ -1,7 +1,9 @@
-import glamorous from 'glamorous'
+import glamorous, { Div } from 'glamorous'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { withRouter } from 'react-router'
+
+import Language from './language'
 
 const bgColor = '#caaa65'
 
@@ -43,6 +45,11 @@ const Link = withRouter(props =>
   <LinkAnchor {...props} isActive={props.location.pathname === props.href} />
 )
 
+const LanguageSwitcher = _ =>
+  <Div position="absolute" top="85px" right="20px">
+    <Language />
+  </Div>
+
 const TopNav = props =>
   <TopNavDiv>
     <Link href="/">
@@ -50,6 +57,7 @@ const TopNav = props =>
     </Link>
     <Link href="/new">New</Link>
     {props.gameIds.map(id => <Link key={id} href={`/games/${id}`}>{id}</Link>)}
+    <LanguageSwitcher />
   </TopNavDiv>
 
 TopNav.propTypes = {
