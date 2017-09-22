@@ -1,9 +1,10 @@
 import glamorous from 'glamorous'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 const bgColor = '#caaa65'
 
-const Language = glamorous.div({
+const LanguageDiv = glamorous.div({
   display: 'inline-flex',
   alignItems: 'center',
   backgroundColor: '#caaa65',
@@ -12,21 +13,39 @@ const Language = glamorous.div({
   borderRadius: '4px'
 })
 
-const LangOpt = glamorous.a({
-  padding: '0 2px',
-  fontWeight: 'bold',
-  color: '#fff',
-  textDecoration: 'none',
-  transition: 'all 300ms',
-  textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
-  ':hover': {
-    color: '#49c63b'
-  }
-})
+const LangOpt = glamorous.a(
+  {
+    padding: '0 2px',
+    fontWeight: 'bold',
+    textDecoration: 'none',
+    transition: 'all 300ms',
+    textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
+    ':hover': {
+      color: '#49c63b'
+    }
+  },
+  ({ isActive }) =>
+    isActive
+      ? {
+          color: '#49c63b'
+        }
+      : { color: '#fff' }
+)
 
-export default _ =>
-  <Language>
-    <LangOpt href="/">en</LangOpt>
-    /
-    <LangOpt href="/">es</LangOpt>
-  </Language>
+const langs = ['en', 'es']
+
+const Language = props =>
+  <LanguageDiv>
+    {langs.map((lang, i) => [
+      <LangOpt href="/" key={lang} isActive={lang === props.currentLang}>
+        {lang}
+      </LangOpt>,
+      i !== langs.length - 1 ? '/' : null
+    ])}
+  </LanguageDiv>
+
+Language.propTypes = {
+  currentLang: PropTypes.string.isRequired
+}
+
+export default Language
