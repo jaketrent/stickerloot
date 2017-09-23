@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { withRouter } from 'react-router'
 
-import Language from './language'
+import LanguageSwitcher from './language-switcher'
 
 const bgColor = '#caaa65'
 
@@ -45,7 +45,7 @@ const Link = withRouter(props => (
   <LinkAnchor {...props} isActive={props.location.pathname === props.href} />
 ))
 
-const LanguageSwitcher = props => (
+const LanguageSwitcherContainer = props => (
   <Div position="absolute" top="85px" right="20px">
     {props.children}
   </Div>
@@ -62,9 +62,9 @@ const TopNav = props => (
         {id}
       </Link>
     ))}
-    <LanguageSwitcher>
-      <Language onSelect={props.onCurrentLangSelect} />
-    </LanguageSwitcher>
+    <LanguageSwitcherContainer>
+      <LanguageSwitcher onSelect={props.onCurrentLangSelect} />
+    </LanguageSwitcherContainer>
   </TopNavDiv>
 )
 
