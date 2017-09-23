@@ -26,17 +26,23 @@ const Index = props => (
             <I18n id="start" />
           </h2>
           <p>
-            Whack the pinata with exceeding force. 3 hits will crack open the
-            pinata. When cracked open, the pinata will shower you with stickers.
+            <I18n id="instruct1" />
           </p>
-          <p>Trade a set of stickers in for more whacks at the pinata.</p>
           <p>
-            When you are out of swings and out of sets of stickers, the party
-            will come to an end.
+            <I18n id="instruct2" />
           </p>
-          <p>Select 'New' in the menu above. Round uno, fight!</p>
-          <h2>To stop</h2>
-          <p>Modify this code until it breaks.</p>
+          <p>
+            <I18n id="instruct3" />
+          </p>
+          <p>
+            <I18n id="instruct4" />
+          </p>
+          <h2>
+            <I18n id="stop" />
+          </h2>
+          <p>
+            <I18n id="instruct5" />
+          </p>
         </Content>
       </div>
     )}
