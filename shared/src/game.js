@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import Actions from './ui/actions'
+import CurrentLanguage from './ui/current-language'
 import GameOver from './ui/game-over'
 import Pinata from './ui/pinata'
 import Stats from './ui/stats'
@@ -91,33 +92,39 @@ class Game extends React.Component {
   }
   render() {
     return (
-      <div>
-        <TopNav gameIds={this.props.serverState.gameIds} />
-        {this.state.swingsRemaining > 0 && [
-          <Pinata
-            key="pinata"
-            hitsRemaining={this.state.hitsRemaining}
-            isCracked={this.state.crackedStickers.length > 0}
-            onSwing={this.handleSwing}
-          />,
-          <Stickers key="stickers" stickers={this.state.crackedStickers} />
-        ]}
-        {this.state.swingsRemaining <= 0 &&
-          !Object.keys(this.state.stickers).every(
-            id => this.state.stickers[id].count > 0
-          ) &&
-          <GameOver swingsCount={this.state.swingsCount} />}
-        <Stats
-          swingsRemaining={this.state.swingsRemaining}
-          stickers={this.state.stickers}
-        />
-        <Actions
-          isCracked={this.state.crackedStickers.length > 0}
-          onReset={this.handleReset}
-          onTrade={this.handleTrade}
-          stickers={this.state.stickers}
-        />
-      </div>
+      <CurrentLanguage>
+        {onCurrentLangSelect => (
+          <div>
+            <TopNav
+              gameIds={this.props.serverState.gameIds}
+              onCurrentLangSelect={onCurrentLangSelect}
+            />
+            {this.state.swingsRemaining > 0 && [
+              <Pinata
+                key="pinata"
+                hitsRemaining={this.state.hitsRemaining}
+                isCracked={this.state.crackedStickers.length > 0}
+                onSwing={this.handleSwing}
+              />,
+              <Stickers key="stickers" stickers={this.state.crackedStickers} />
+            ]}
+            {this.state.swingsRemaining <= 0 &&
+            !Object.keys(this.state.stickers).every(
+              id => this.state.stickers[id].count > 0
+            ) && <GameOver swingsCount={this.state.swingsCount} />}
+            <Stats
+              swingsRemaining={this.state.swingsRemaining}
+              stickers={this.state.stickers}
+            />
+            <Actions
+              isCracked={this.state.crackedStickers.length > 0}
+              onReset={this.handleReset}
+              onTrade={this.handleTrade}
+              stickers={this.state.stickers}
+            />
+          </div>
+        )}
+      </CurrentLanguage>
     )
   }
 }
