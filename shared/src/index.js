@@ -2,53 +2,13 @@ import glamorous from 'glamorous'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import CurrentLanguage from './ui/current-language'
+import I18n from './ui/i18n'
 import TopNav from './ui/topnav'
 
 const Content = glamorous.div({
   padding: '20px'
 })
-
-class CurrentLanguage extends React.Component {
-  constructor(props, context) {
-    super(props, context)
-    this.state = { currentLang: 'en' }
-    this.handleCurrentLangSelect = this.handleCurrentLangSelect.bind(this)
-  }
-  getChildContext() {
-    return { currentLang: this.state.currentLang }
-  }
-  handleCurrentLangSelect(lang) {
-    this.setState({ currentLang: lang })
-  }
-  render() {
-    return this.props.children(this.handleCurrentLangSelect)
-  }
-}
-CurrentLanguage.childContextTypes = {
-  currentLang: PropTypes.string.isRequired
-}
-
-const languages = {
-  en: {
-    start: 'To start',
-    welcome: 'Welcome!'
-  },
-  es: {
-    start: "Let's beginno",
-    welcome: 'Bienvenido'
-  }
-}
-class I18n extends React.Component {
-  render() {
-    return <span>{languages[this.context.currentLang][this.props.id]}</span>
-  }
-}
-I18n.propTypes = {
-  id: PropTypes.string.isRequired
-}
-I18n.contextTypes = {
-  currentLang: PropTypes.string
-}
 
 const Index = props => (
   <CurrentLanguage>
