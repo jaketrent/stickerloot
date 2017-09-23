@@ -14,7 +14,8 @@ const PinataImg = glamorous.img({
   left: '-30vw',
   display: 'inline-block',
   height: '50vw',
-  userSelect: 'none'
+  userSelect: 'none',
+  pointerEvents: 'all'
 })
 
 const interjectionStyles = {
@@ -146,7 +147,7 @@ class Pinata extends React.Component {
   }
   render() {
     return (
-      <Div position="relative">
+      <Div position="relative" pointerEvents="none">
         <Thread
           isCracked={this.props.isCracked}
           isSwinging={this.state.isSwinging}
@@ -157,15 +158,14 @@ class Pinata extends React.Component {
           <PinataImg src="/static/img/pinata.png" onClick={this.handleClick} />
         </Thread>
         {this.state.isSwinging &&
-          this.props.hitsRemaining > 0 &&
-          this.state.isHit &&
-          <Whack src="/static/img/whack.png" />}
+        this.props.hitsRemaining > 0 &&
+        this.state.isHit && <Whack src="/static/img/whack.png" />}
         {this.state.isSwinging &&
-          !this.state.isHit &&
-          <Miss src="/static/img/miss.png" />}
+        !this.state.isHit && <Miss src="/static/img/miss.png" />}
         {this.state.isSwinging &&
-          this.props.hitsRemaining <= 0 &&
-          <Explode src="/static/img/explode.png" />}
+        this.props.hitsRemaining <= 0 && (
+          <Explode src="/static/img/explode.png" />
+        )}
       </Div>
     )
   }
