@@ -41,27 +41,36 @@ const LinkAnchor = glamorous.a(
   ({ isActive }) => (isActive ? linkHoverStyles : null)
 )
 
-const Link = withRouter(props =>
+const Link = withRouter(props => (
   <LinkAnchor {...props} isActive={props.location.pathname === props.href} />
+))
+
+const LanguageSwitcher = props => (
+  <Div position="absolute" top="85px" right="20px">
+    {props.children}
+  </Div>
 )
 
-const LanguageSwitcher = _ =>
-  <Div position="absolute" top="85px" right="20px">
-    <Language />
-  </Div>
-
-const TopNav = props =>
+const TopNav = props => (
   <TopNavDiv>
     <Link href="/">
       <Logo src="/static/img/logo.png" />
     </Link>
     <Link href="/new">New</Link>
-    {props.gameIds.map(id => <Link key={id} href={`/games/${id}`}>{id}</Link>)}
-    <LanguageSwitcher />
+    {props.gameIds.map(id => (
+      <Link key={id} href={`/games/${id}`}>
+        {id}
+      </Link>
+    ))}
+    <LanguageSwitcher>
+      <Language onSelect={props.onCurrentLangSelect} />
+    </LanguageSwitcher>
   </TopNavDiv>
+)
 
 TopNav.propTypes = {
-  gameIds: PropTypes.arrayOf(PropTypes.string).isRequired
+  gameIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onCurrentLangSelect: PropTypes.func.isRequired
 }
 
 export default TopNav

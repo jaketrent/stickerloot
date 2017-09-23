@@ -10,16 +10,21 @@ const LanguageDiv = glamorous.div({
   backgroundColor: '#caaa65',
   color: '#fff',
   padding: '0.5em 1em',
-  borderRadius: '4px'
+  borderRadius: '4px',
+  fontSize: '1.125em'
 })
 
-const LangOpt = glamorous.a(
+const LangOpt = glamorous.button(
   {
-    padding: '0 2px',
+    padding: '2px 4px',
+    fontSize: '1em',
     fontWeight: 'bold',
     textDecoration: 'none',
     transition: 'all 300ms',
     textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
+    border: 'none',
+    background: 'none',
+    cursor: 'pointer',
     ':hover': {
       color: '#49c63b'
     }
@@ -34,18 +39,25 @@ const LangOpt = glamorous.a(
 
 const langs = ['en', 'es']
 
-const Language = props =>
+const Language = (props, context) => (
   <LanguageDiv>
     {langs.map((lang, i) => [
-      <LangOpt href="/" key={lang} isActive={lang === props.currentLang}>
+      <LangOpt
+        key={lang}
+        isActive={lang === context.currentLang}
+        onClick={_ => props.onSelect(lang)}
+      >
         {lang}
       </LangOpt>,
       i !== langs.length - 1 ? '/' : null
     ])}
   </LanguageDiv>
-
+)
 Language.propTypes = {
-  currentLang: PropTypes.string.isRequired
+  onSelect: PropTypes.func.isRequired
+}
+Language.contextTypes = {
+  currentLang: PropTypes.string
 }
 
 export default Language
