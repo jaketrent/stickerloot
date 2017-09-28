@@ -3,7 +3,7 @@ import glamorous from 'glamorous'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const Stickers = glamorous.div({
+const StickersDiv = glamorous.div({
   position: 'absolute',
   top: '0',
   left: '50%',
@@ -35,11 +35,11 @@ const Sticker = glamorous.img(
 )
 
 const Stickers = props =>
-  Array.isArray(props.stickers) && props.stickers.length > 0
-    ? <Stickers>
-        {props.stickers.map((s, i) => <Sticker key={i} src={s.src} />)}
-      </Stickers>
-    : null
+  Array.isArray(props.stickers) && props.stickers.length > 0 ? (
+    <StickersDiv>
+      {props.stickers.map((s, i) => <Sticker key={i} src={s.src} />)}
+    </StickersDiv>
+  ) : null
 
 Stickers.propTypes = {
   stickers: PropTypes.arrayOf(
