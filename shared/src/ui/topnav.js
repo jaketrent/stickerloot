@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { withRouter } from 'react-router'
 
+import I18n from './i18n'
 import LanguageSwitcher from './language-switcher'
 
 const bgColor = '#caaa65'
@@ -63,7 +64,9 @@ const TopNav = props => (
     <Link href="/">
       <Logo src="/static/img/logo.png" />
     </Link>
-    <Link href="/new">New</Link>
+    <Link href="/new">
+      <I18n id="new" />
+    </Link>
     {props.gameIds.map(id => (
       <Link key={id} href={`/games/${id}`}>
         {id}

@@ -2,6 +2,8 @@ import glamorous from 'glamorous'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import I18n from './i18n'
+
 const bgColor = '#1b91ce'
 
 const StatsDiv = glamorous.div({
@@ -73,23 +75,26 @@ const Sticker = glamorous.div({
   alignItems: 'center'
 })
 
-const Stats = props =>
+const Stats = props => (
   <div>
     <StatsDiv>
       <Swings>
-        <SwingsLabel>Swings Left</SwingsLabel>
+        <SwingsLabel>
+          <I18n id="swingsLeft" />
+        </SwingsLabel>
         <SwingsCount>{props.swingsRemaining}</SwingsCount>
       </Swings>
       <Stickers>
-        {Object.keys(props.stickers || []).map(key =>
+        {Object.keys(props.stickers || []).map(key => (
           <Sticker key={props.stickers[key].src}>
             <StickerCount>{props.stickers[key].count}</StickerCount>
             <StickerImg src={props.stickers[key].src} />
           </Sticker>
-        )}
+        ))}
       </Stickers>
     </StatsDiv>
   </div>
+)
 Stats.propTypes = {
   stickers: PropTypes.object.isRequired,
   swingsRemaining: PropTypes.number.isRequired

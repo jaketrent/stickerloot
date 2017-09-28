@@ -7,8 +7,12 @@ export default {
       'When you are out of swings and out of sets of stickers, the party will come to an end.',
     instruct4: "Select 'New' in the menu above. Round uno, fight!",
     instruct5: 'Modify this code until it breaks.',
+    new: 'New',
+    newPinata: 'New Pinata',
     start: 'To start',
     stop: 'To stop',
+    swingsLeft: 'Swings Left',
+    tradeStickers: 'Trade Stickers',
     welcome: 'Welcome!'
   },
   es: {
@@ -20,8 +24,12 @@ export default {
       'Cuando tu no mas swings y no sets of stickeros, the fiest will fin.',
     instruct4: "Select 'New' in the menu above. Round uno, fight!",
     instruct5: 'Modificato el codez to broken tears.',
+    new: 'Nuevo!',
+    newPinata: 'Piñata Nuevo!',
     start: "Let's beginno",
     stop: 'To el stopito',
+    swingsLeft: 'Swings Mas',
+    tradeStickers: 'Trado el Stickerz',
     welcome: 'Bienvenido!'
   }
 }

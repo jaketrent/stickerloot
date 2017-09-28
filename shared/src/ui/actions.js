@@ -2,6 +2,8 @@ import glamorous from 'glamorous'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import I18n from './i18n'
+
 const ActionsDiv = glamorous.div({
   position: 'fixed',
   left: 0,
@@ -28,10 +30,10 @@ const Button = glamorous.button(
   })
 )
 
-const Actions = props =>
+const Actions = props => (
   <ActionsDiv>
     <Button onClick={props.onReset} disabled={!props.isCracked}>
-      New Piñata
+      <I18n id="newPinata" />
     </Button>
     <Button
       onClick={props.onTrade}
@@ -41,9 +43,10 @@ const Actions = props =>
         )
       }
     >
-      Trade Stickers
+      <I18n id="tradeStickers" />
     </Button>
   </ActionsDiv>
+)
 Actions.propTypes = {
   isCracked: PropTypes.bool.isRequired,
   onReset: PropTypes.func.isRequired,
