@@ -1,5 +1,6 @@
 export default {
   en: {
+    gameOver: "Fiesta's Over!",
     instruct1:
       'Whack the pinata with exceeding force. 3 hits will crack open the pinata. When cracked open, the pinata will shower you with stickers.',
     instruct2: 'Trade a set of stickers in for more whacks at the pinata.',
@@ -12,10 +13,12 @@ export default {
     start: 'To start',
     stop: 'To stop',
     swingsLeft: 'Swings Left',
+    totalSwings: 'Total Swings',
     tradeStickers: 'Trade Stickers',
     welcome: 'Welcome!'
   },
   es: {
+    gameOver: "Fiesta's Finesto!",
     instruct1:
       'El whack ze pinata with mucho enforco. Tres hitmos will crack aqui el pinata. Cuando mui cracked open, el pinata will explotar tu with stickeros.',
     instruct2:
@@ -30,6 +33,7 @@ export default {
     stop: 'To el stopito',
     swingsLeft: 'Swings Mas',
     tradeStickers: 'Trado el Stickerz',
+    totalSwings: 'Swings Totale',
     welcome: 'Bienvenido!'
   }
 }

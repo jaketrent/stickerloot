@@ -3,6 +3,8 @@ import glamorous from 'glamorous'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import I18n from './i18n'
+
 const bounce = glamor.css.keyframes({
   '100%': {
     transform: 'rotate(180deg) translate(50%, -43vh)'
@@ -40,13 +42,18 @@ const Pinata = glamorous.img({
   animation: `${bounce} 400ms ease-in 1000ms forwards`
 })
 
-const GameOver = props =>
+const GameOver = props => (
   <End>
-    <GameOverDiv>Fiesta's Over!</GameOverDiv>
-    <SwingsLabel>Total Swings</SwingsLabel>
+    <GameOverDiv>
+      <I18n id="gameOver" />
+    </GameOverDiv>
+    <SwingsLabel>
+      <I18n id="totalSwings" />
+    </SwingsLabel>
     <SwingsCount>{props.swingsCount}</SwingsCount>
     <Pinata src="/static/img/pinata.png" />
   </End>
+)
 GameOver.propTypes = {
   swingsCount: PropTypes.number.isRequired
 }
