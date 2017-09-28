@@ -41,9 +41,16 @@ const LinkAnchor = glamorous.a(
   ({ isActive }) => (isActive ? linkHoverStyles : null)
 )
 
-const Link = withRouter(props => (
-  <LinkAnchor {...props} isActive={props.location.pathname === props.href} />
-))
+const Link = withRouter(props => {
+  const href = props.href + props.location.search
+  return (
+    <LinkAnchor
+      {...props}
+      href={href}
+      isActive={props.location.pathname === props.href}
+    />
+  )
+})
 
 const LanguageSwitcherContainer = props => (
   <Div position="absolute" top="85px" right="20px">

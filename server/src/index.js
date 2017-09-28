@@ -72,8 +72,9 @@ app.get(
   },
   send
 )
-app.get('/new', (_, res) => {
-  res.redirect(`/games/${games.create().id}`)
+app.get('/new', (req, res) => {
+  const search = req.query.lang ? `?lang=${req.query.lang}` : ''
+  res.redirect(`/games/${games.create().id}${search}`)
 })
 app.get(
   '/games/:id',
