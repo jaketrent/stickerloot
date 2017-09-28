@@ -34,10 +34,13 @@ const Sticker = glamorous.img(
   }
 )
 
+const StickerCollection = props =>
+  props.stickers.map((s, i) => <Sticker key={i} src={s.src} />)
+
 const Stickers = props =>
   Array.isArray(props.stickers) && props.stickers.length > 0 ? (
     <StickersDiv>
-      {props.stickers.map((s, i) => <Sticker key={i} src={s.src} />)}
+      <StickerCollection stickers={props.stickers} />
     </StickersDiv>
   ) : null
 
