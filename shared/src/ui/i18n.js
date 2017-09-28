@@ -3,9 +3,8 @@ import React from 'react'
 
 import languages from './languages'
 
-const I18n = (props, context) => (
-  <span>{languages[context.currentLang][props.id]}</span>
-)
+const I18n = (props, context) => languages[context.currentLang][props.id]
+
 I18n.propTypes = {
   id: PropTypes.string.isRequired
 }
