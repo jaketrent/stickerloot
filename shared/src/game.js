@@ -1,4 +1,3 @@
-import 'babel-polyfill'
 import 'isomorphic-fetch'
 
 import glamorous from 'glamorous'
@@ -14,7 +13,7 @@ import * as stickers from './util/stickers'
 import Stickers from './ui/stickers'
 import TopNav from './ui/topnav'
 
-const saveGameState = async game => {
+const saveGameState = game => {
   return fetch('http://localhost:3001/api/games/' + game.id, {
     method: 'PUT',
     headers: {
@@ -109,9 +108,9 @@ class Game extends React.Component {
               <Stickers key="stickers" stickers={this.state.crackedStickers} />
             ]}
             {this.state.swingsRemaining <= 0 &&
-            !Object.keys(this.state.stickers).every(
-              id => this.state.stickers[id].count > 0
-            ) && <GameOver swingsCount={this.state.swingsCount} />}
+              !Object.keys(this.state.stickers).every(
+                id => this.state.stickers[id].count > 0
+              ) && <GameOver swingsCount={this.state.swingsCount} />}
             <Stats
               swingsRemaining={this.state.swingsRemaining}
               stickers={this.state.stickers}
