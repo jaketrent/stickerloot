@@ -7,7 +7,7 @@ import Index from '@shared/index'
 import Game from '@shared/game'
 
 rehydrate(window._glam)
-ReactDOM.render(
+ReactDOM.hydrate(
   <BrowserRouter>
     <Switch>
       <Route
